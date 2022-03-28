@@ -1,0 +1,15 @@
+Open= initially generated bur explored nodes
+Closed=all the explored nodes
+
+ALGO--
+
+LOOP until open is empty or success is returned
+(N,P)<-- remove head(open) and add it to Close
+
+if N is the goal Node, return success and construct the path from initial node to N.
+
+else generate successors of node N and add it to open
+
+(OPEN)<--OPEN U {MOVEGEN(N)}
+end if 
+end loop
