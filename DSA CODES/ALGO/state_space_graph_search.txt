@@ -1,0 +1,13 @@
+open = list of generated but unexplored nodes
+Closed= list of explored nodes
+
+ALGO--
+
+loop until open is empty or success is generated
+(N,P)<-- remove head (open) and add it to close
+if N is the goal node, return success generate the path from initial state to goal 
+else generate successors of node N and add it open only those who are not explored 
+
+OPEN <-- OPEN U {MOVEGEN(N)}\{OPEN U CLOSED}
+end if 
+end loop
