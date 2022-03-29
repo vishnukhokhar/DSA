@@ -1,0 +1,45 @@
+insert start node(S, @,g(S)) to open
+loop until open is empty or sucess is returned
+
+(n,p,g(s)) <-- remove head(open) and add it to close
+if node n is goal retunn success add path from initial to node n 
+successors <--- movegen(n)
+
+  for each successors m do switch 
+    case
+       
+       case 1: if m!= open or closed
+                compute g(m)=g(n) + cost(n,m)
+                add g(m) to open according to the priority(g(m))
+        case 2:
+               if m E open
+                    compute newg(m)=g(n) + cost(n,m)
+                  if newg(m)<g(m)
+                     update g(m)=newg(m)
+                     update (m,n,g(m)) to open according to the priority 
+                  end if
+        case 3: 
+                if m E closed
+                      compute newg(m)=g(n)+cost(n,m)
+                    if newg(m)<g(m):
+                        update g(m)=newg(m)
+                        update (m,n,g(m))  to the closed according to the priority g(m)
+                        propogateimprovemnt(m)
+                     end if 
+  end for
+end if 
+end loop        
+
+
+propogateimprovemnt(m)
+ for each successors of (m)
+    compute newg(s) =g(m)+cost(m,s)
+    if newg(s)< g(s)
+       update g(s)=newg(m)
+       update (s,m,g(s)) to the open or closed
+       if s E closed:
+          propogateimprovemnt(s)
+        end if
+    end if
+  end for
+
