@@ -4,12 +4,12 @@ using namespace std;
 
 struct mystack
 {
-    vector <int> v;
+    vector<int> v;
     void push(int x)
     {
         v.push_back(x);
-
     }
+
     int pop()
     {
         int res=v.back();
@@ -32,18 +32,18 @@ struct mystack
         return v.empty();
     }
 };
+
 int main()
 {
     mystack s;
-    s.push(13);
     s.push(12);
-    s.push(11);
-    s.push(10);
+    s.push(13);
+    s.push(14);
+    s.push(15);
 
     cout<<s.peek()<<endl;
+    cout<<s.isempty()<<endl;
     cout<<s.pop()<<endl;
-    cout<<s.peek()<<endl;
-    cout<<s.size()<<endl;
-    cout<<s.isempty();
 
+    cout<<s.size();
 }
