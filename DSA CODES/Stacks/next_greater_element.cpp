@@ -1,36 +1,34 @@
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
 using namespace std;
-
-vector<int> next_greater_element(int arr[], int n)
+class Solution
 {
-    stack<int> s;
-    vector<int> v;
-
-    s.push(arr[n-1]);
-    v.push_back(-1);
-    for(int i=n-2;i>=0;i--)
+public:
+    vector<int> nextGreaterElement(vector<int> &nums1, vector<int> &nums2)
     {
-        while(s.empty()==false && s.top()<=arr[i])
+        int n = nums2.size();
+        unordered_map<int, int> mp;
+        stack<int> st;
+
+        for (int i = n - 1; i >= 0; i--)
         {
-            s.pop();
+            while (!st.empty() && st.top() < nums2[i])
+            {
+                st.pop();
+            }
+            if (st.empty())
+            {
+                mp[nums2[i]] = -1;
+            }
+            else
+            {
+                mp[nums2[i]] = st.top();
+            }
+            st.push(nums2[i]);
         }
-
-        int ng=s.empty()? -1:s.top();
-        v.push_back(ng);
-        s.push(arr[i]);
+        for (int i = 0; i < nums1.size(); i++)
+        {
+            nums1[i] = mp[nums1[i]];
+        }
+        return nums1;
     }
-
-    reverse(v.begin(),v.end());
-    return v;
-
-}
-
-int main()
-{
-    int arr[]={5,15,10,8,6,12,9,18};
-    int n=8;
-    for(int x: next_greater_element(arr,n))
-    {
-        cout<<x<<" ";
-    }
-}
+};
